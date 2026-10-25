@@ -117,7 +117,6 @@ class UI {
         this.elements.deliveredItems.innerHTML = '';
         
         if (items.length === 0) {
-            this.elements.deliveredItems.textContent = '';
             return;
         }
         
@@ -126,15 +125,20 @@ class UI {
             const itemDiv = document.createElement('div');
             itemDiv.className = 'delivered-item';
             
-            const label = document.createElement('span');
-            label.textContent = item.label;
+            const moneyDiv = document.createElement('div');
+            if (item.value < 1) {
+                moneyDiv.className = 'money-display coin';
+            } else {
+                moneyDiv.className = 'money-display bill';
+            }
+            moneyDiv.textContent = item.label;
             
             const removeBtn = document.createElement('button');
             removeBtn.className = 'delivered-item-remove';
             removeBtn.textContent = '×';
             removeBtn.onclick = () => onRemove(i);
             
-            itemDiv.appendChild(label);
+            itemDiv.appendChild(moneyDiv);
             itemDiv.appendChild(removeBtn);
             this.elements.deliveredItems.appendChild(itemDiv);
         }
