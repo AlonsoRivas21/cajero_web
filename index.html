@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dar Cambio - Practica de Caja Registradora</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-row">
+            <div class="header-item">
+                <span class="label">Nivel</span>
+                <span class="value" id="level">1</span>
+            </div>
+            <div class="header-item">
+                <span class="label">Puntuación</span>
+                <span class="value" id="score">0</span>
+            </div>
+            <div class="header-item">
+                <span class="label">Racha</span>
+                <span class="value" id="streak">0</span>
+            </div>
+            <div class="header-item">
+                <span class="label">Tiempo</span>
+                <span class="value" id="timer">45</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="transaction-info">
+            <div class="info-row">
+                <span class="info-label">Precio:</span>
+                <span class="info-value" id="price">$0.00</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Cliente paga con:</span>
+                <span class="info-value" id="paid">$0.00</span>
+            </div>
+            <div class="info-row change-row">
+                <span class="info-label">Cambio a dar:</span>
+                <span class="info-value" id="change-due">???</span>
+            </div>
+        </section>
+
+        <section class="feedback-section">
+            <div id="feedback" class="feedback" aria-live="polite"></div>
+        </section>
+
+        <section class="delivered-section">
+            <h2 class="section-title">Cambio entregado</h2>
+            <div class="delivered-items" id="delivered-items"></div>
+            <div class="delivered-total">
+                <span class="total-label">Total:</span>
+                <span class="total-value" id="delivered-total">$0.00</span>
+            </div>
+        </section>
+
+        <section class="cash-section">
+            <h2 class="section-title">Caja</h2>
+            
+            <div class="cash-group">
+                <h3 class="group-title">Monedas</h3>
+                <div class="cash-buttons" id="coins-buttons"></div>
+            </div>
+
+            <div class="cash-group">
+                <h3 class="group-title">Billetes</h3>
+                <div class="cash-buttons" id="bills-buttons"></div>
+            </div>
+        </section>
+
+        <section class="actions-section">
+            <button class="btn btn-primary" id="btn-check">Comprobar</button>
+            <button class="btn btn-secondary" id="btn-clear">Limpiar selección</button>
+        </section>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
