@@ -6,10 +6,10 @@
 }
 
 :root {
-    --bg-color: #ffffff;
+    --bg-color: #f3f4f6;
     --text-color: #1a1a1a;
     --border-color: #d1d5db;
-    --header-bg: #f9fafb;
+    --header-bg: #ffffff;
     --section-bg: #ffffff;
     --primary-color: #2563eb;
     --primary-hover: #1d4ed8;
@@ -19,7 +19,10 @@
     --error-color: #dc2626;
     --warning-color: #ea580c;
     --coin-color: #f59e0b;
-    --bill-color: #10b981;
+    --coin-bg: #fef3c7;
+    --bill-color: #065f46;
+    --bill-bg: #a7f3d0;
+    --bill-border: #10b981;
 }
 
 html {
@@ -36,6 +39,53 @@ body {
     padding: 0.5rem;
     max-width: 100%;
     overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Start Screen */
+.start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.start-screen.hidden {
+    display: none;
+}
+
+.start-content {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    width: 320px;
+}
+
+.start-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.start-subtitle {
+    font-size: 0.95rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+.btn-start {
+    width: 100%;
+    font-size: 1.1rem;
 }
 
 /* Header */
@@ -123,7 +173,9 @@ body {
 
 /* Feedback */
 .feedback-section {
-    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .feedback {
@@ -156,6 +208,10 @@ body {
     background-color: #fed7aa;
     color: var(--warning-color);
     border-color: var(--warning-color);
+}
+
+.btn-continue {
+    width: 100%;
 }
 
 /* Delivered Section */
@@ -248,15 +304,15 @@ body {
 }
 
 .cash-btn {
-    min-width: 52px;
-    min-height: 52px;
+    min-width: 56px;
+    min-height: 56px;
     padding: 0.375rem 0.5rem;
     border: 2px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: var(--bg-color);
     color: var(--text-color);
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.15s ease;
     flex: 0 1 auto;
@@ -265,25 +321,32 @@ body {
     justify-content: center;
     text-align: center;
     line-height: 1.2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cash-btn:hover {
-    background-color: var(--header-bg);
-    border-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
 }
 
 .cash-btn:active {
     transform: scale(0.95);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .cash-btn.coin {
     border-color: var(--coin-color);
-    background-color: #fef3c7;
+    background: radial-gradient(circle at 30% 30%, #fbbf24, var(--coin-bg));
+    color: #92400e;
+    border-radius: 50%;
 }
 
 .cash-btn.bill {
-    border-color: var(--bill-color);
-    background-color: #d1fae5;
+    border-color: var(--bill-border);
+    background: linear-gradient(135deg, #86efac 0%, var(--bill-bg) 100%);
+    color: var(--bill-color);
+    border-radius: 4px;
+    min-width: 70px;
 }
 
 /* Actions */

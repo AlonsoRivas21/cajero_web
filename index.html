@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div id="start-screen" class="start-screen">
+        <div class="start-content">
+            <h1 class="start-title">Dar Cambio</h1>
+            <p class="start-subtitle">Practica dando el cambio correcto</p>
+            <button class="btn btn-primary btn-start" id="btn-start">Iniciar Juego</button>
+        </div>
+    </div>
+
     <header class="header">
         <div class="header-row">
             <div class="header-item">
@@ -23,7 +31,7 @@
             </div>
             <div class="header-item">
                 <span class="label">Tiempo</span>
-                <span class="value" id="timer">45</span>
+                <span class="value" id="timer">60</span>
             </div>
         </div>
     </header>
@@ -46,6 +54,7 @@
 
         <section class="feedback-section">
             <div id="feedback" class="feedback" aria-live="polite"></div>
+            <button class="btn btn-primary btn-continue" id="btn-continue" style="display: none;">Continuar</button>
         </section>
 
         <section class="delivered-section">

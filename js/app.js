@@ -12,14 +12,36 @@ class Game {
         this.streak = 0;
         this.consecutiveCorrect = 0;
         this.isProcessing = false;
+        this.gameStarted = false;
         
         this.init();
     }
     
     init() {
+        // Botón de inicio
+        const btnStart = document.getElementById('btn-start');
+        const startScreen = document.getElementById('start-screen');
+        if (btnStart) {
+            btnStart.addEventListener('click', () => {
+                if (startScreen) {
+                    startScreen.classList.add('hidden');
+                }
+                this.gameStarted = true;
+                this.startNewTransaction();
+            });
+        }
+        
         // Event listeners
         this.ui.elements.btnCheck.addEventListener('click', () => this.checkAnswer());
         this.ui.elements.btnClear.addEventListener('click', () => this.clearSelection());
+        
+        const btnContinue = document.getElementById('btn-continue');
+        if (btnContinue) {
+            btnContinue.addEventListener('click', () => {
+                btnContinue.style.display = 'none';
+                this.startNewTransaction();
+            });
+        }
         
         // Event delegation para botones de efectivo
         this.ui.elements.coinsButtons.addEventListener('click', (e) => {
@@ -33,15 +55,16 @@ class Game {
                 this.addItem(e.target);
             }
         });
-        
-        // Iniciar juego
-        this.startNewTransaction();
     }
     
     startNewTransaction() {
+        if (!this.gameStarted) return;
+        
         this.isProcessing = false;
         this.deliveredItems = [];
         this.ui.clearFeedback();
+        const btnContinue = document.getElementById('btn-continue');
+        if (btnContinue) btnContinue.style.display = 'none';
         this.ui.renderDeliveredItems([], () => {});
         this.ui.updateDeliveredTotal(0);
         this.ui.elements.changeDue.textContent = '???';
@@ -158,9 +181,10 @@ class Game {
         
         this.ui.updateStats(this.level, this.score, this.streak);
         
-        setTimeout(() => {
-            this.startNewTransaction();
-        }, 1500);
+        const btnContinue = document.getElementById('btn-continue');
+        if (btnContinue) {
+            btnContinue.style.display = 'block';
+        }
     }
     
     handleIncorrect(totalDelivered, changeDue) {
@@ -181,9 +205,10 @@ class Game {
         this.ui.showFeedback(message, 'error');
         this.ui.updateStats(this.level, this.score, this.streak);
         
-        setTimeout(() => {
-            this.startNewTransaction();
-        }, 1500);
+        const btnContinue = document.getElementById('btn-continue');
+        if (btnContinue) {
+            btnContinue.style.display = 'block';
+        }
     }
     
     handleTimeout() {
@@ -195,12 +220,14 @@ class Game {
         this.streak = 0;
         this.consecutiveCorrect = 0;
         
+        this.ui.elements.changeDue.textContent = formatCurrency(this.currentTransaction.change);
         this.ui.showFeedback('Tiempo agotado. -5 puntos.', 'warning');
         this.ui.updateStats(this.level, this.score, this.streak);
         
-        setTimeout(() => {
-            this.startNewTransaction();
-        }, 1500);
+        const btnContinue = document.getElementById('btn-continue');
+        if (btnContinue) {
+            btnContinue.style.display = 'block';
+        }
     }
 }
 
